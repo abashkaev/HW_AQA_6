@@ -43,6 +43,7 @@ public class TransferBetweenCardsOfTheSameUserTest {
     var expectedBalanceSecondCard = balanceSecondCardBeforeTransfer - amountTransfer;
     Assertions.assertEquals(expectedBalanceFirstCard, dashboard.getCardBalance(0));
     Assertions.assertEquals(expectedBalanceSecondCard, dashboard.getCardBalance(1));
+
 }
 
 @Test
@@ -64,6 +65,7 @@ public class TransferBetweenCardsOfTheSameUserTest {
         Assertions.assertEquals(expectedBalanceSecondCard, dashboard.getCardBalance(1));
         Assertions.assertTrue(dashboard.getCardBalance(1) == 0);
         sleep(5000);
+
 }
 
     @Test
