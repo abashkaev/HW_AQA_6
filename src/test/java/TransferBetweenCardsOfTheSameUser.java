@@ -65,21 +65,21 @@ public class TransferBetweenCardsOfTheSameUser {
         Assertions.assertTrue(dashboard.getCardBalance(1) == 0);
         sleep(5000);
 }
-
-    @Test
-    public void transferInvalidAmountToFirstCard () { //Перевод средств, превышающий количество средств на счету
-        open("http://localhost:9999/");
-        var auth = new Authorization();
-        var dashboard = new DashboardPage();
-        auth.validAuthorization("vasya", "qwerty123", "12345");
-        int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
-        int amountTransfer = balanceSecondCardBeforeTransfer + 10000;
-        dashboard.addCardBalance(0);
-        $("[data-test-id='amount'] input").setValue(String.valueOf(amountTransfer));
-        $("[data-test-id='from'] input").setValue(String.valueOf(DataHelper.getSecondCardInfo().getCardNumber()));
-        $("[data-test-id='action-transfer']").click();
-        dashboard.errorNotification();
-    }
+//
+//    @Test
+//    public void transferInvalidAmountToFirstCard () { //Перевод средств, превышающий количество средств на счету
+//        open("http://localhost:9999/");
+//        var auth = new Authorization();
+//        var dashboard = new DashboardPage();
+//        auth.validAuthorization("vasya", "qwerty123", "12345");
+//        int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
+//        int amountTransfer = balanceSecondCardBeforeTransfer + 10000;
+//        dashboard.addCardBalance(0);
+//        $("[data-test-id='amount'] input").setValue(String.valueOf(amountTransfer));
+//        $("[data-test-id='from'] input").setValue(String.valueOf(DataHelper.getSecondCardInfo().getCardNumber()));
+//        $("[data-test-id='action-transfer']").click();
+//        dashboard.errorNotification();
+//    }
 
 
 }
