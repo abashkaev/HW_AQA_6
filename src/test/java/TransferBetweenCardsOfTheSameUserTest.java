@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class TransferBetweenCardsOfTheSameUser {
+public class TransferBetweenCardsOfTheSameUserTest {
 
 
 @Test
