@@ -75,22 +75,22 @@ public class TransferBetweenCardsOfTheSameUserTest {
         Assertions.assertTrue(dashboard.getCardBalance(1) == 0);
     }
 
-//    @Test
-//    public void transferInvalidAmountToFirstCard () { //Перевод средств, превышающий количество средств на счету
-//        open("http://localhost:9999/");
-//        var auth = new Authorization();
-//        auth.validAuthorization(DataHelper.getTestUser().getName(), DataHelper.getTestUser().getPassword());
-//        var verify = new Verification();
-//        verify.validVerification(DataHelper.getTestCode().getVerifyCode());
-//        var dashboard = new DashboardPage();
-//        int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
-//        int amountTransfer = balanceSecondCardBeforeTransfer + 10000;
-//        dashboard.addCardBalance(0);
-//        var transfer = new TransferPage();
-//       transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
-//       sleep(5000);
-//       dashboard.errorNotification();
-//    }
+    @Test
+    public void transferInvalidAmountToFirstCard () { //Перевод средств, превышающий количество средств на счету
+        open("http://localhost:9999/");
+        var auth = new Authorization();
+        auth.validAuthorization(DataHelper.getTestUser().getName(), DataHelper.getTestUser().getPassword());
+        var verify = new Verification();
+        verify.validVerification(DataHelper.getTestCode().getVerifyCode());
+        var dashboard = new DashboardPage();
+        int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
+        int amountTransfer = balanceSecondCardBeforeTransfer + 10000;
+        dashboard.addCardBalance(0);
+        var transfer = new TransferPage();
+       transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
+       sleep(5000);
+       dashboard.errorNotification();
+    }
 
 
 }
