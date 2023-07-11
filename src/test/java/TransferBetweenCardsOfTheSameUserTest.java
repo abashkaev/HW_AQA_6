@@ -88,7 +88,6 @@ public class TransferBetweenCardsOfTheSameUserTest {
         dashboard.addCardBalance(0);
         var transfer = new TransferPage();
        transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
-       sleep(5000);
        dashboard.errorNotification();
     }
 
