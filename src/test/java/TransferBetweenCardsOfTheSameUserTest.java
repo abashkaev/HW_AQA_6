@@ -1,8 +1,8 @@
-import Data.DataHelper;
-import Page.Authorization;
-import Page.DashboardPage;
-import Page.TransferPage;
-import Page.Verification;
+import data.DataHelper;
+import page.Authorization;
+import page.DashboardPage;
+import page.TransferPage;
+import page.Verification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,17 +21,18 @@ public class TransferBetweenCardsOfTheSameUserTest {
         var verify = new Verification();
         verify.validVerification(DataHelper.getTestCode().getVerifyCode());
         var dashboard = new DashboardPage();
+        dashboard.isDashboardPageOpen();
         int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
         int balanceFirstCardBeforeTransfer = dashboard.getCardBalance(0);
         dashboard.addCardBalance(1);
         var transfer = new TransferPage();
         int amountTransfer = DataHelper.getValidAmount(balanceFirstCardBeforeTransfer).getAmount();
         transfer.transferMoney(amountTransfer, DataHelper.getFirstCardInfo().getCardNumber());
+        dashboard.isDashboardPageOpen();
         var expectedBalanceFirstCard = balanceFirstCardBeforeTransfer - amountTransfer;
         var expectedBalanceSecondCard = balanceSecondCardBeforeTransfer + amountTransfer;
         Assertions.assertEquals(expectedBalanceFirstCard, dashboard.getCardBalance(0));
         Assertions.assertEquals(expectedBalanceSecondCard, dashboard.getCardBalance(1));
-        sleep(5000);
     }
 
     @Test
@@ -42,12 +43,14 @@ public class TransferBetweenCardsOfTheSameUserTest {
         var verify = new Verification();
         verify.validVerification(DataHelper.getTestCode().getVerifyCode());
         var dashboard = new DashboardPage();
+        dashboard.isDashboardPageOpen();
         int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
         int balanceFirstCardBeforeTransfer = dashboard.getCardBalance(0);
         dashboard.addCardBalance(0);
         var transfer = new TransferPage();
         int amountTransfer = DataHelper.getValidAmount(balanceSecondCardBeforeTransfer).getAmount();
         transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
+        dashboard.isDashboardPageOpen();
         var expectedBalanceFirstCard = balanceFirstCardBeforeTransfer + amountTransfer;
         var expectedBalanceSecondCard = balanceSecondCardBeforeTransfer - amountTransfer;
         Assertions.assertEquals(expectedBalanceFirstCard, dashboard.getCardBalance(0));
@@ -62,12 +65,14 @@ public class TransferBetweenCardsOfTheSameUserTest {
         var verify = new Verification();
         verify.validVerification(DataHelper.getTestCode().getVerifyCode());
         var dashboard = new DashboardPage();
+        dashboard.isDashboardPageOpen();
         int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
         int balanceFirstCardBeforeTransfer = dashboard.getCardBalance(0);
         dashboard.addCardBalance(0);
         var transfer = new TransferPage();
         int amountTransfer = DataHelper.getAllMoney(balanceSecondCardBeforeTransfer).getAmount();
         transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
+        dashboard.isDashboardPageOpen();
         var expectedBalanceFirstCard = balanceFirstCardBeforeTransfer + amountTransfer;
         var expectedBalanceSecondCard = balanceSecondCardBeforeTransfer - amountTransfer;
         Assertions.assertEquals(expectedBalanceFirstCard, dashboard.getCardBalance(0));
@@ -83,12 +88,13 @@ public class TransferBetweenCardsOfTheSameUserTest {
         var verify = new Verification();
         verify.validVerification(DataHelper.getTestCode().getVerifyCode());
         var dashboard = new DashboardPage();
+        dashboard.isDashboardPageOpen();
         int balanceSecondCardBeforeTransfer = dashboard.getCardBalance(1);
         int amountTransfer = balanceSecondCardBeforeTransfer + 10000;
         dashboard.addCardBalance(0);
         var transfer = new TransferPage();
        transfer.transferMoney(amountTransfer, DataHelper.getSecondCardInfo().getCardNumber());
-       dashboard.errorNotification();
+       transfer.errorNotification();
     }
 
 

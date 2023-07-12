@@ -1,4 +1,4 @@
-package Page;
+package page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -12,19 +12,18 @@ public class DashboardPage {
     private final String balanceStart = "баланс: ";
     private final String balanceFinish = " р.";
 
-
+    public void isDashboardPageOpen () {
+        $("[data-test-id='dashboard']").shouldHave(Condition.text("  Личный кабинет")).shouldBe(Condition.visible);
+    }
     public int getCardBalance(int index) {
         var text = cards.get(index).getText();
         return extractBalance(text);
     }
 
-    public void errorNotification () {
-        $("[data-test-id='error-notification']").shouldHave(Condition.text("Ошибка")).shouldBe(Condition.visible);
-    }
+
 
     public void addCardBalance (int index) {
         cards.get(index).$("[data-test-id='action-deposit']").click();
-        $(".heading.heading_size_xl").shouldBe(Condition.text("Пополнение карты"));
     }
 
     private int extractBalance(String text) {
